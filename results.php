@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <!-- import bootstrap css -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -58,34 +57,34 @@
           </tr>
           <tr>
             <th scope="row">Street Address:</th>
-            <td><? php echo $_POST["stAddress"]; ?></td>
+            <td><?php echo $_POST["stAddress"]; ?></td>
           </tr>
           <tr>
             <th scope="row">City:</th>
-            <td><? php echo $_POST["city"]; ?></td>
+            <td><?php echo $_POST["city"]; ?></td>
           </tr>
           <tr>
             <th scope="row">State:</th>
-            <td><? php echo $_POST["state"]; ?></td>
+            <td><?php echo $_POST["state"]; ?></td>
           </tr>
           <tr>
             <th scope="row">Zip Code:</th>
-            <td><? php echo $_POST["zip"]; ?></td>
+            <td><?php echo $_POST["zip"]; ?></td>
           </tr>
           <tr>
             <th scope="row">Education Level:</th>
-            <td><? php echo $_POST["education"]; ?></td>
+            <td><?php echo $_POST["education"]; ?></td>
           </tr>
           <tr>
             <th scope="row">Income Bracket:</th>
-            <td><? php echo $_POST["income"]; ?></td>
+            <td><?php echo $_POST["income"]; ?></td>
           </tr>
         </tbody>
       </table>
 
       <br><br>
 
-      <div id="map" onload="initMap()"></div>
+      <div id="map"></div>
 
       <br><br>
 
