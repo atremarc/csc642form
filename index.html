@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- import bootstrap css -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>CSC 642 Summer 2019 Individual Assignment Adam Tremarche</title>
+
+</head>
+
+<body>
+
+  <div class="d-flex justify-content-center" style="background-color:#e18582">
+    <h2>CSC 642 Summer 2019 Individual Assignment Adam Tremarche</h2>
+  </div>
+
+  <!-- basic row/column layout -->
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+
+      <br><h1>Registration Form</h1><br><br>
+
+      <p>Please fill out all the required fields</p><br><br>
+
+      <!-- begin form -->
+      <form action="results.php" method="POST" class="needs-validation" novalidate>
+        <div class="form-group row">
+          <label class="col-sm-4" for="firstname">First Name</label>
+          <input name="firstname", type="text" class="form-control col-sm-4" id="firstname" placeholder="Adam" required maxlength="40" minlength="1">
+          <small id="rec" class="form-text text-muted">&nbsp&nbsp<i>Required</i></small>
+          <div class="invalid-feedback">
+            must be between 1 and 40 characters
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-4" for="lastname">Last Name</label>
+          <input name="lastname", type="text" class="form-control col-sm-4" id="lastname" placeholder="Tremarche" required maxlength="40" minlength="1">
+          <small id="rec" class="form-text text-muted">&nbsp&nbsp<i>Required</i></small>
+          <div class="invalid-feedback">
+            must be between 1 and 40 characters
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-4" for="email1">Email</label>
+          <input name="email1", type="text" class="form-control col-sm-4" id="email1" placeholder="example@website.com" maxlength="40">
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-4" for="email2">Confirm Email</label>
+          <input name="email2", type="text" class="form-control col-sm-4" id="email2" placeholder="example@website.com" maxlength="40">
+        </div>
+        <hr>
+        <div class="form-group row">
+          <label class="col-sm-4" for="phone">Phone Number</label>
+          <input name="phone", type="text" class="form-control col-sm-4" id="phone" placeholder="5555555" required maxlength="7" minlength="7" oninput="this.value=this.value.replace(/(?![0-9])./gmi,'')">
+          <small id="rec" class="form-text text-muted">&nbsp&nbsp<i>Required</i></small>
+          <div class="invalid-feedback">
+            must be exactly 7 numbers
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-4" for="stAddress">Street Address</label>
+          <input name="stAdress", type="text" class="form-control col-sm-4" id="stAddress" placeholder="123 Main St" required maxlength="40" minlength="1">
+          <small id="rec" class="form-text text-muted">&nbsp&nbsp<i>Required</i></small>
+          <div class="invalid-feedback">
+            must be between 1 and 40 characters
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-4" for="city">City</label>
+          <input name="city", type="text" class="form-control col-sm-4" id="city" placeholder="City Name" required maxlength="40" minlength="1">
+          <small id="rec" class="form-text text-muted">&nbsp&nbsp<i>Required</i></small>
+          <div class="invalid-feedback">
+            must be between 1 and 40 characters
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-4" for="state">State</label>
+          <input name="state", type="text" class="form-control col-sm-4" id="state" placeholder="State Name" required maxlength="40" minlength="1">
+          <small id="rec" class="form-text text-muted">&nbsp&nbsp<i>Required</i></small>
+          <div class="invalid-feedback">
+            must be between 1 and 40 characters
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-4" for="zip">Zip Code</label>
+          <input name="zip", type="text" class="form-control col-sm-4" id="zip" placeholder="12345" required maxlength="5" minlength="5" oninput="this.value=this.value.replace(/(?![0-9])./gmi,'')">
+          <small id="rec" class="form-text text-muted">&nbsp&nbsp<i>Required</i></small>
+          <div class="invalid-feedback">
+            must be exactly 5 numbers
+          </div>
+        </div>
+        <hr>
+        <div class="form-group">
+          <label for="education">Select your education level.</label>
+          <select name="eductation" class="form-control" id="education">
+            <option>I'd prefer not to say.</option>
+            <option>High School</option>
+            <option>College</option>
+            <option>Graduate Studies</option>
+            <option>Ph. D</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="income">Select your income bracket.</label>
+          <select name="income" class="form-control" id="income">
+            <option>I'd prefer not to say.</option>
+            <option>less than $ 50K</option>
+            <option>between $50-100 K</option>
+            <option>above $100 K</option>
+          </select>
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox" name="policyTerms" class="form-check-input" id="termsCheck" required>
+          <label class="form-check-label" for="termsCheck">I agree to the terms and conditions.</label>
+          <div class="invalid-feedback">
+            please agree to our terms of service
+          </div>
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit">Submit form</button>
+    </form>
+    <br><br>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+
+<!-- script to disable submission if fields are invalid-->
+<script>
+
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+
+        //check if all required fields have input
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+<!-- import js for bootstrap -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
