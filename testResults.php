@@ -92,7 +92,50 @@
     <div class="col-sm-2"></div>
   </div>
 
-  
+  <script>
+
+function initMap() {
+
+  //default map state
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 15
+  });
+
+  //get street address
+  var street = <? php echo $_POST["stAddress"]; ?>;
+  var city = <? php echo $_POST["city"]; ?>;
+  var state = <? php echo $_POST["state"]; ?>;
+  var zip = <? php echo $_POST["zip"]; ?>;
+  var address = street.concat(" ", city, " ", state, " ", zip);
+
+  //initialize geocoder
+  geocoder = new google.maps.Geocoder();
+
+  //geocoder encodes address and updates map
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+      infowindow = new google.maps.InfoWindow({
+                content: address
+            });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+  </script>
+
+
+  <!-- import google maps -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDu_D1X0YvfaDFs_Iluc469lNKxNm_rtAk&callback=initMap">
+  </script>
 
 
   
