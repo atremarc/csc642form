@@ -97,79 +97,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-<!--
-<?php
 
-  funciton geocoder($address){
-    $address = urlencode($address);
-    $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key=AIzaSyDu_D1X0YvfaDFs_Iluc469lNKxNm_rtAk";
-    $response_json = file_get_contents($url);
-    $response = json_decode($response_json, true);
-    if($response['status']=='OK'){
-      $lati = isset($response['results'][0]['geometry']['location']['lat']) ? $response['results'][0]['geometry']['location']['lat'] : "";
-      $longi = isset($response['results'][0]['geometry']['location']['lng']) ? $response['results'][0]['geometry']['location']['lng'] : "";
-      $formatted_address = isset($resonse['results'][0]['formatted_address']) ? $response['results'][0]['formatted_address'] : "";
-      if($lati && $longi && $formatted_address){
-        $data_array = array();
-        array_push($data_array, $lati, $longi, $formatted_address);
-        return $data_array;
-      } else {
-        return false;
-      }
-    } else {
-      echo "ERROR: {$response['status']}";
-      return false;
-    }
-  }
-?>  
--->
 </body>
-<!--
-<?php
-if($_POST){
-  $street = $_POST["stAddress"];
-  $city = $_POST["city"];
-  $state = $_POST["state"];
-  $zip = $_POST["zip"];
-  $address = $street." ".$city." ".$state." ".$zip;
 
-  $mapArray = geocoder($address);
-
-  if($mapArray){
-    $latitude = $mapArray[0];
-    $longitude = $mapArray[1];
-    $formatted_address = $mapArray[2];
-    ?>
-
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDu_D1X0YvfaDFs_Iluc469lNKxNm_rtAk"></script>
-
-    <script type="text/javascript">
-      function init_map() {
-        var myOptions = {
-          zoom: 14,
-          center: new google.maps.LatLng(<?php echo $latitude; ?>, <?php echo $longitude; ?>)
-        };
-        map = new google.maps.Map(document.getElementById("map"), myOptions);
-        marker = new google.maps.Marker({
-          map: map,
-          position: new google.maps.LatLng(<?php echo $latitude; ?>, <?php echo $longitude; ?>)
-        });
-        infowindow = new google.maps.InfoWindow({
-          content: "<?php echo $formatted_address; ?>"
-        });
-        google.maps.event.addListener(marker, "click", function () {
-          infowindow.open(map, marker);
-        });
-        infowindow.open(map, marker);
-      }
-      google.maps.event.addDomListener(window, 'load', init_map);
-    </script>
-    <?php
-
-  }else{
-    echo "Error in address data formatting"
-  } 
-}
-?>
--->
 </html>
