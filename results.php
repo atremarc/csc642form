@@ -114,6 +114,9 @@
             alert('Geocode was not successful for the following reason: ' + status);
           }
         });
+        var infowindow = new google.maps.InfoWindow({
+          content: address
+        });
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDu_D1X0YvfaDFs_Iluc469lNKxNm_rtAk&callback=initMap"
