@@ -92,50 +92,30 @@
     <div class="col-sm-2"></div>
   </div>
 
-  <script>
+<?php
 
-function initMap() {
-
-  //default map state
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 15
-  });
-
-  //get street address
-  var street = <? php echo $_POST["stAddress"]; ?>;
-  var city = <? php echo $_POST["city"]; ?>;
-  var state = <? php echo $_POST["state"]; ?>;
-  var zip = <? php echo $_POST["zip"]; ?>;
-  var address = street.concat(" ", city, " ", state, " ", zip);
-
-  //initialize geocoder
-  geocoder = new google.maps.Geocoder();
-
-  //geocoder encodes address and updates map
-  geocoder.geocode( { 'address': address}, function(results, status) {
-    if (status == 'OK') {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-      infowindow = new google.maps.InfoWindow({
-                content: address
-            });
+  funciton geocoder($address){
+    $address = urlencode($address);
+    $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key=AIzaSyDu_D1X0YvfaDFs_Iluc469lNKxNm_rtAk";
+    $response_json = file_get_contents($url);
+    $response = json_decode($response_json, true);
+    if($response['status']=='OK'){
+      $lati = isset($response['results'][0]['geometry']['location']['lat']) ? $response['results'][0]['geometry']['location']['lat'] : "";
+      $longi = isset($response['results'][0]['geometry']['location']['lng']) ? $response['results'][0]['geometry']['location']['lng'] : "";
+      $formatted_address = isset($resonse['results'][0]['formatted_address']) ? $response['results'][0]['formatted_address'] : "";
+      if($lati && $longi && $formatted_address){
+        $data_array = array();
+        array_push($data_array, $lati, $longi, $formatted_address);
+        return $data_array;
+      } else {
+        return false;
+      }
     } else {
-      alert('Geocode was not successful for the following reason: ' + status);
+      echo "ERROR: {$response['status']}";
+      return false;
     }
-  });
-}
-
-  </script>
-
-
-  <!-- import google maps -->
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDu_D1X0YvfaDFs_Iluc469lNKxNm_rtAk&callback=initMap">
-  </script>
+  }
+?>  
 
   <!-- import js for bootstrap -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -143,4 +123,51 @@ function initMap() {
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
+<?php
+if($_POST){
+  $street = $_POST["stAddress"];
+  $city = $_POST["city"];
+  $state = $_POST["state"];
+  $zip = $_POST["zip"];
+  $address = $street." ".$city." ".$state." ".$zip;
+
+  $mapArray = geocoder($address);
+
+  if($mapArray){
+    $latitude = $mapArray[0];
+    $longitude = $mapArray[1];
+    $formatted_address = $mapArray[2];
+    ?>
+
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDu_D1X0YvfaDFs_Iluc469lNKxNm_rtAk"></script>
+
+    <script type="text/javascript">
+      function init_map() {
+        var myOptions = {
+          zoom: 14,
+          center: new google.maps.LatLng(<?php echo $latitude; ?>, <?php echo $longitude; ?>)
+        };
+        map = new google.maps.Map(document.getElementById("map"), myOptions);
+        marker = new google.maps.Marker({
+          map: map,
+          position: new google.maps.LatLng(<?php echo $latitude; ?>, <?php echo $longitude; ?>)
+        });
+        infowindow = new google.maps.InfoWindow({
+          content: "<?php echo $formatted_address; ?>"
+        });
+        google.maps.event.addListener(marker, "click", function () {
+          infowindow.open(map, marker);
+        });
+        infowindow.open(map, marker);
+      }
+      google.maps.event.addDomListener(window, 'load', init_map);
+    </script>
+    <?php
+
+  }else{
+    echo "Error in address data formatting"
+  } 
+}
+?>
+
 </html>
