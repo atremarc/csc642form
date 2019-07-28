@@ -117,6 +117,9 @@
         var infowindow = new google.maps.InfoWindow({
           content: address
         });
+         marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDu_D1X0YvfaDFs_Iluc469lNKxNm_rtAk&callback=initMap"
