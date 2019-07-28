@@ -1,3 +1,22 @@
+require('src/autoload.php');
+
+$siteKey = '6Lcl368UAAAAAFPzF4ParZP-RMRQh9G01Eh69g9R';
+$secret = '6Lcl368UAAAAAK1TjsCqzmf61I3KiCuKQ219rCps';
+
+$recaptcha = new \ReCaptcha\ReCaptcha($secret);
+
+$gRecaptchaResponse = $_POST['g-recaptcha-response']; //google captcha post data
+$remoteIp = $_SERVER['REMOTE_ADDR']; //to get user's ip
+
+$recaptchaErrors = ''; // blank varible to store error
+
+$resp = $recaptcha->verify($gRecaptchaResponse, $remoteIp); //method to verify captcha
+if ($resp->isSuccess()) {
+   // send mail or insert in db or do whatver you wish to
+} else {
+   $recaptchaErrors = $resp->getErrorCodes(); // set the error in varible
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,6 +145,10 @@
         </div>
         <br>
         <div class="g-recaptcha" data-sitekey="6Lcl368UAAAAAFPzF4ParZP-RMRQh9G01Eh69g9R"></div>
+        <span>
+          if(isset($recaptchaErrors[0]))
+          echo $recaptchaErrors[0];
+        </span>
         <br>
         <button class="btn btn-primary" type="submit">Submit form</button>
     </form>
