@@ -86,6 +86,10 @@
 
       <div id="map"></div>
       <script>
+      var street = "<?php echo $street ?>";
+      var city = "<?php echo $city ?>";
+      var state = "<?php echo $state ?>";
+      var zip = "<?php echo $zip ?>";
       var map;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
