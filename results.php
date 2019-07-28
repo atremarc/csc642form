@@ -57,19 +57,19 @@
           </tr>
           <tr>
             <th scope="row">Street Address:</th>
-            <td><?php echo $_POST["stAddress"]; ?></td>
+            <td><?php echo $_POST["stAddress"]; $street = $_POST["stAddress"]; ?></td>
           </tr>
           <tr>
             <th scope="row">City:</th>
-            <td><?php echo $_POST["city"]; ?></td>
+            <td><?php echo $_POST["city"]; $city = $_POST["city"]; ?></td>
           </tr>
           <tr>
             <th scope="row">State:</th>
-            <td><?php echo $_POST["state"]; ?></td>
+            <td><?php echo $_POST["state"]; $state = $_POST["state"]; ?></td>
           </tr>
           <tr>
             <th scope="row">Zip Code:</th>
-            <td><?php echo $_POST["zip"]; ?></td>
+            <td><?php echo $_POST["zip"]; $zip = $_POST["zip"]; ?></td>
           </tr>
           <tr>
             <th scope="row">Education Level:</th>
