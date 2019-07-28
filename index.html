@@ -144,11 +144,13 @@ if ($resp->isSuccess()) {
           </div>
         </div>
         <br>
-        <div class="g-recaptcha" data-sitekey="6Lcl368UAAAAAFPzF4ParZP-RMRQh9G01Eh69g9R"></div>
-        <span>
-          if(isset($recaptchaErrors[0]))
-          echo $recaptchaErrors[0];
-        </span>
+        <div class="g-recaptcha" data-sitekey="6Lcl368UAAAAAFPzF4ParZP-RMRQh9G01Eh69g9R">
+          <span>
+            if(isset($recaptchaErrors[0]))
+            echo $recaptchaErrors[0];
+          </span>
+        </div>
+        
         <br>
         <button class="btn btn-primary" type="submit">Submit form</button>
     </form>
